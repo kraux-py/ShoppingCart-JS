@@ -125,5 +125,21 @@ const updateCart = () => {
   quantity.innerText = totalQuantity;
 };
 
+const changeQuantity = (productId, change) => {
+  
+  const cartItem = cartItems[productId];
 
+  if (cartItem) {
+    
+    cartItem.quantity = Math.max(0, cartItem.quantity + change);
+
+    if (cartItem.quantity === 0) {
+      delete cartItems[productId]; 
+    }
+
+    updateCart(); 
+  } else {
+    console.error("Cart item not found:", productId);
+  }
+};
 
